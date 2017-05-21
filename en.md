@@ -54,7 +54,7 @@ so that means that the consistency of your I your UI is always guaranteed whenev
 
 so the basic flow of data and Mobius is that there's a central state which captures all your states of your application and it should be as small as possible because many things can just be derived from a state like ashes like the dome those are all just computed values so from the state they're computed values are derived and also side effects might be triggered for example if you change some data a network request might need to be made and so whenever it has an action influences your state we know that everything that comes after the state will be consistent 
 
-### MobX Core
+## MobX Core
 
 so there are four essential functions in the API all phone bags and one is observable and it's a function that's our decorator that takes objects or arrays or primitive values and just make sure that mobius is able to track what happens to these pieces of data and there's altering we just solve it and relates to Oren is observer which basically puts a yet component in an alterant function so trigger ends whenever relevant data exchange computed values are very similar they also take a take an expression and reevaluate it's where needed but there's one smart thing about compute its values is that because it's a value and no they side effects we know when it's Edith and when it is not so if there's a computer to tell you which is used by nobody will make sure we'll make sure it's never evaluated so actually it's achieves lazy evaluation and finally our actions and those are an optional concept but they are used to make clear where you intend to change your state mo bigs can optimize around that 
 
@@ -62,7 +62,7 @@ so there are four essential functions in the API all phone bags and one is obser
 
 <cut>
 
-### Mendix / Live Demo
+## Mendix / Live Demo
 
 so this is what we use a public forum index [this](https://www.mendix.com/collaborative-visual-development/) is an application available studio you can drag a widget and change them there for properties so you can build forms and pages it was actually more interesting is that we also have a designer which you can design your database so these are basically database tables these are associations and what we make sure is that whenever we drag things around now for example you see the arrows moving around and actually we didn't do anything special for that basically robux just make sure for us that that is kept consistent and i'll show you how that works in a simplified version 
 
@@ -98,7 +98,7 @@ we node need to know is what is the shape of the data we have with which classes
 
 </cut>
 
-### Example: validation rules
+## Example: validation rules
 
 ```javascript
 function carInvariant(car, rules) {
@@ -111,11 +111,11 @@ function carInvariant(car, rules) {
 
 so and one example wires that's very religious very relevance our validation rules so when is a mobic function and it's just tracks the first function and after that evaluates is true it executes the second one and so we have here a function that's checks if the speed of a car exceeds the speed limit and if that happens then a fine will be sent so that's basically a side effect will be triggers now what's interesting is it doesn't matter where or when the speed or the speed limit of those concepts exchange but if it changed and this equation returns true we know for sure that the fine will be sent does the guarantee mo big gives us so what are actually rules and our system look like is always a bit like this they walk over the complete data tree and check all settings properties and check if there are double names and if the correct address type is selected and if the type of the attributes and database matches the inputs witcha type it's a one big mess are hundreds of hundreds of these rules and so we cannot possibly track our cells when with rule need to be fired the cool thing is that we don't have to we know that the correct rules are fired if an important piece of data that influences that rule exchange and we know that the other rules won't be fired and so these rules are always feasible and all the actors have influence on when these rules are run but rules are retained by a separate team and they don't care when somebody else changes the data 
 
-### MobX so far...
+## MobX so far...
 
 so that is generally what index does its essence and if you want to look through this in more detail just take a decade course it's a free text you half an hour and then you have seen all the essential concepts of no bags and I started making this up short about roughly a year ago and in the meantime it has grown significantly it's got the 5000 * shal get up at syme right pried off especially because it's not back by Facebook or something and also got into the top 1% download the pictures on NPM and what's amazing the most was that it's turned out to be the second most popular state management library in the region JavaScript survey and it's also nice to know that's not just used in the reactor will but also without a framework 
 
-### The Reactions
+## The Reactions
 
 > It's so simple and fast :)
 
@@ -141,11 +141,11 @@ and so people are happy that it uses mutable data because that's step forward to
 
 but on the other hand people are set because it doesn't use immutable data because immutable data has all these nice mathematical properties 
 
-##### Immutable or Mutable Data?
+### Immutable or Mutable Data?
 
 so a lot of questions to answer is should you use immutable a beautiful data especially in the reactor world that's quite a question 
 
-##### Redux or MobX?
+### Redux or MobX?
 
 or will also say should you use radix or mobiles 
 
@@ -153,7 +153,7 @@ or will also say should you use radix or mobiles
 
 or maybe even better question Elsa or Anna you might be wondering how that relates but the basic point is I have two small daughters so this is a question I get the most they're always arguing over who should have should play who 
 
-##### Immutable Data
+### Immutable Data
 
 1. State snapshots
 2. Replayable actions
@@ -163,7 +163,7 @@ or maybe even better question Elsa or Anna you might be wondering how that relat
 
 so let's talk a bit about Anna and is a very well controlled very predictable very well behaving girl 
 
-##### Observable, Mutable Data
+### Observable, Mutable Data
 
 1. Excels at complex, coupled domains
 2. And complex, deep calculations
@@ -190,7 +190,7 @@ so redux is all about predictability at schools predictable state container and 
 
 next on the other hand tries to get simplicity by making sure that your state is as small as possible and as many things as possible are derived from your state so that there's no redundancy and those kind of things 
 
-### The Quest For
+## The Quest For
 
 > A minimally defined, *snapshot-able state container* with replayable, KISS *actions* and efficient, *transparent* reactive *derivations*
 
@@ -215,7 +215,7 @@ so let's go back to my demo let's find this oh yeah this one so we had this demo
 
 so basically this is because a snapshot is just another transformation of the state you just transform it into some Jason tree structure 
 
-### Problems
+## Problems
 
 1. No standardized serialization (“serializr” package helps)
 2. Deep serializing state is expensive
@@ -223,10 +223,314 @@ so basically this is because a snapshot is just another transformation of the st
 
 there are some problems with this approach though it's a bit limited and one of the problems is that because mum x is an opinionated it doesn't know how to serialize your state if you use just a tree estate without glasses it's easy to see you lies in to deserialize but if you use classes classes don't have a concert in Jason so it cannot deduct from your Jason which plaza to to instantiate so for that the share life's packets I was introduced makes more simple but there are more problems Deep's utilizing your state is very expensive because you need if you have a large state you need to walk your entire tree make a complete copy of that and it's not only expensive CP 0 CPU is so it's also expensive memory wise because you will be filling up memory like crazy by copying your state it's not something has changed so it likes structural sharing 
 
-### Solutions
+## Solutions
 
 1. Trees are easy to serialize
 2. A snapshot is a derived value
 3. Rendering a tree with structural sharing? Solved problem
 
-lets these problems cannot be solved it's a nice thing so what you can do is it you can constrain ourselves to trees because trees are easy to serialize and we also know that snapshots are just drive failures and robux is very good at driving value and we even know that we can solve the social sharing problem because basically rendering aid zoom is also a structural sharing problem if you change some data we want to correct components to update I want the other components to be left alone so that's also social sharing that's just another form so apparently these are solvable problems and to show you how this can be solved quite easily I'm gonna take first a bit deeper dive into computers values you're ready to solve them so here you have a plain JavaScript class and it has a full name kettle property so it's that it's um you inspect the full name property of this object it will evaluate and there's something nasty in it because it will return an array so it's um you evaluate this function you'll get a fresh array that's a bad thing so if you change first name and then you expect the full name it will say calculating and if you inspect it another time it will reevaluate give you a new array and still tell you another time in the skull cladding but actually if you have observable data sources and reactive derivations there's a version of control so because data is no longer pull through your system but push through your system it's actually a room time behavior is different so if you have now to observe all attributes and the computer to format then what will happen if we change the first name that will trigger the computed value to be rerun needs to be derived again because the baking data changed but after that if we are printed twice it doesn't need to reevaluate because it knows that it can reuse its previous answer because there was no data changed in the meantime so actually here you have sexual sharing and the most minimal form both those log statements will Prince exactly the same array just an effect of inversion of control so if you apply that concept to for example a to-do class you could give it just a computed value representing the JSON structure which returns a simple plain object you're presenting it to do the nice thing is that this function will always return the same object unless something that actually changing that to-do item and if you have then a to do store with a collection of the deuce then you can just map over the two deuce if you try to get its Jason representation and for any to do that was not changed it will just reuse the same Jason representation so what happens if i multiply property over here a new step shots I knew Jason reputation will be generated that will trigger the computed value and the boxes collection to be updated so it will run the map again but the map will reuse the old snapshots of the other to do is wrong slice should be to those anyway point is clear and so on and so on so you get structural sharing for free if you use computed values to share large your state so that's actually something very cool I think so based on that ID I recently published an experimental package it's a so much work progress but it's based on those IDs and it's this time opinionated so it tells you how to secure your stores but as a return you get things like time traveling a structural sharing and so a score concept is that your state is a tree of models and those models can be mutable they can be reached they can be observed ball you can have actions of computers values but for every model there's always a snapshot which is immutable with your presents the state of the model at that moment in time and the snapshots use social sharing and to create a model there's concept of factories the factory just script gets an example model and every time you invoke the factory it makes a copy of the example you gave it and so basically it's effectively just creates a new observer object based on a copy of the example model and mix it in any snapshot you provide to it so if you had some previous snapshots of a few states that will make sure that that state is represented in the new instance you get so a box factory just looked like this test three attributes also we made observe ball and they compute this value and then we can create a new books by just providing a complete or partial snapshot and for the store the same there we can use the map off and the array of bonfires so that's what makes story knows how to what the shape of this object is and how to share your light it and the selection this time is no longer a reference like it was previously it's now a string because it was a reference then you would get a graph and then it would be hard to infer how it wouldn't need to be serialized so it's open yet it but also a little bit more you have a little bit more boy played an MMO Bix and we have to see where it is worth the effort or not so let's talk about those snapshots again so basically there are three functions to work for snapshots you can pass a model to the gets natural function and then get the snapshot at the moment in time I can also apply a snapshot back to an existing model instance I will see in funnier you can also subscribe to every time any snapshot is available and with this you can build very easily time traveling while having the benefits of sexual sharing and knots doing expensive computations so what's if you so say we have some store we can just listen to new step shots coming in push it on some array and then we can easily apply some shit back to the existing store if you want to play back or forward you can also do many other things once you have snapshots for example as you have a form but you want to make chases enough for them to some object but you want to don't want it that it immediately becomes the truth you want that stay just localized in the edit form until you submit it so what you can then do is then you can just go to to do pass it to the form and whenever the form is submitted take the snapshot of the clone to do and apply it back to its original an actually clone is just invoking the factory of the model by with the snapshot of the model then get a new copy the exact same instance I lived as you can also make testing very easy because you can just clone some base data and folk some actions on it and then check whether the snapshots represents the correct state so if he marked as completed it should be true and it also integrates very nicely if just don't know who has used just before but it's pretty awesome it you can just say I expect the snapshot to match the record snapshot and then if you change some data it will give an error the search field and then you should either fix your implementation or you can just say this is not a crack snapshot this change is correctly storage snapshot for me and it's really awesome at work if I can recommend it dolly for staples are for a testing react components but there's more we can do so you just saw this application but actually there are more of them and what was the interesting is to sink this application with the other one which turns out to be very easily once you have snapshots so what you can do is that whenever we have a new snapshot we can send it over its socket contract it at once we receive data over socket we can just apply the snapshots back to our existing store yeah it looks okay so if a now start dragging it you see on the bottom right all the snapshots of the states being synced over the web sockets and as till I kept completely in sync so that's because we have a way to sterilize our state very easily but that's more the nice thing about observable data and contracts the immutable data is that you know exactly what has been changed inside the data you don't get a new copy of the complete world where just the only thing you know is that this is the new world but you can actually see because it's fine grained observed ball what is actually changed so the obligatory baguettes also support Jason pictures out of the box which is a standard to synchronize changes of Jason for that it provides two functions on pets with s triggered it's time I pets is emitted and apply pets so this is very similar to snapshots exactly except that I just sink pictures and patches are of course we're not sure to synchronize because if you have a large tea tree the these objections are st. become really really large and I wouldn't do that in production so it's better instead to listen two batches so if there's a bitch now we want to send pets to the other side and if your Shiva pets we just want to apply the patch so if I now drag you see there are only very small objects send along regardless how big our state has thrown its just saying please replace in this part in the state 32 x value with this new value that's adjacent patches do so this you can use affect effectively to integrate with a backend of some sort and actually a nice thing about obex a tree because it's three it's actually fractal structure it's a it's a three consisting of three consisting of trees so what you could do is not just register a pets listener on the root of the tree he could attest best listener at any point in the tree and so that's something very funny happens so I've now attests to listeners to the tree one to the root I want to a specific books in the tree and then I start moving one of those book that book extra then I start moving netbooks then I get two pitches emitted by its listener image 1 pitch and they emit other with the correct path relatively to the position they were attached to put it in a picture if I change something here it's a Miss bitch over here with this relative path but also of there and describing relatively to that point where in the state tree it changed and see that zebra it's actually see you see it's a recursive structure ok on to actions you saw that we were just moving actions moving boxes by invoking a function so that's that doesn't look replayable at all and we said we want three playable actions to be able to have transactional state so what fix a tree do does is it's reverse responsibility of the developer so if you use the radix then you have to provide a shield Sheila's version of your action a plain object describing what should happen but my biggest a tree does it worse you just invoke a function and it gives you the description of your action because sometimes like me are lazy so a lecture mobic say tree is just like this it's plain just a function we marked a section and it can just change that instance of the box so if you move it with just read coordinates and we don't have to reproduce any world new state here we can just change this localized object and so we can then just invoke that box and move it around the fractions are two functions so we can we just listen to the fact that an action or sandbox UKISS can say please apply this action back to this object so we can replay it and that looks roughly like this actions election is very similar to the previous ones except it can be used as middleware so it receives an extinction and so here we have basically a middleware on the store the prince what action is involved so if we then move a box in the store then it prints I on this path this is this method was involved with these arguments and see your large for so what you can then do of course you should know the drill right now is it whenever there is an action and get some data and next fixed in the middle chain we can sense that description over the wire we can evoke the next layer in the middleware and if we receive images we can just apply the action to our store so if we now move the books don't know patches images but descriptions of the action so we now see that we first move the box and then we changed the selection apparently so that's just to demonstrate that actions are replayable and you can also do that for forms suppose you have a form and then environment when their collaboration happening they can just clone the object and apply the snapshot back because the meantime somebody else might also have changed the same object like if you have a Google Docs or something like that so a smarter thing to do is then cloned you object you have two minutes left how many oh I'm gonna talk quickly and then apply it back and actually you don't and the answer turns out you don't really have to have a tree as well to do all these things you can even do this roof across but I'm gonna leave death as exercise for home because I haven't heard a cool demo so so far we have a state tree with a snapshot of all and we set available actions okay yeah hola takes checks so ah it's the best of two worlds but there's one more demo last one I promise now not last one last one so is to do MPC the radix to MPC you might have seen before and so here are dirty text if tools yeah so you can change it and then you can replay it back at sea right sidra you might have seen this before this is just the basic reading stuff actually the fun thing is that this is not entirely read each application it has a red ejections and your three dicks dispatcher at us radix components you're a tech dev tools but it doesn't have a radix store and it doesn't have any reducers and cylis replayable and that's because it uses a big state tree behind the scenes now be at as a possible well turns out because we have three sections we can just mimic a ridic store with a state tree so what we just do is that we have a simple function that takes a muvek say to the base store and returns a radix store and then passes it down to the radix provider components and then I think keeps working at this and something thing is that that raid extortion is as simple as this get state is basically synonym for get the current snapshot of the state and this path is basically please replay the section on my state tree a similar subscribing to the next version of the world is basically subscribing to the next snapshot so and then our store looks more like this which is I think a lot more set for work don't get confused if this case thing that's because we want to preserve the old redox name actions and because we have that it also worked your way around so I here have my read except tools again but now with our original demo and she that's even in this entire more big space application it doesn't have any rejection it's great except tools still work because it's just really it's just a subset of this mechanism so just try it out I hope just interesting to see this happening but what's even more important to remember than justice Pegasus that you saw that a transactional state is just one reactive transformation away reactive transformations are actually very powerful concepts it's like if you have normal function applications which are very aesthetic which he needs to enter manually and then you have like the entered the era of movies and things are actually reacting so sorry i can't course lady for spec it's a thanks for your attention
+lets these problems cannot be solved it's a nice thing so what you can do is it you can constrain ourselves to trees because trees are easy to serialize and we also know that snapshots are just drive failures and robux is very good at driving value and we even know that we can solve the social sharing problem because basically rendering aid zoom is also a structural sharing problem if you change some data we want to correct components to update I want the other components to be left alone so that's also social sharing that's just another form so apparently these are solvable problems 
+
+### MobX computed values
+
+and to show you how this can be solved quite easily I'm gonna take first a bit deeper dive into computers values you're ready to solve them 
+
+```javascript
+class Person {
+  firstName = 'Michel'
+  lastName = 'Weststrate'
+
+  get fullName() {
+    console.log('calculating!')
+    return [this.firstName, this.lastName]
+  }
+}
+```
+
+so here you have a plain JavaScript class and it has a full name kettle property so it's that it's um you inspect the full name property of this object it will evaluate and there's something nasty in it because it will return an array so it's um you evaluate this function you'll get a fresh array that's a bad thing 
+
+```javascript
+person.firstName = 'John'
+
+console.log(person.fullName)
+// calculating!
+
+console.log(person.fullName)
+// calculating!
+```
+*Pull Based: Recompute every time value is needed*
+
+so if you change first name and then you expect the full name it will say calculating and if you inspect it another time it will reevaluate give you a new array and still tell you another time in the skull cladding 
+
+```javascript
+class Person {
+  @observable firstName = 'Michel'
+  @observable lastName = 'Weststrate'
+
+  @computed get fullName() {
+    console.log('calculating!')
+    return [this.firstName, this.lastName]
+  }
+}
+```
+
+but actually if you have observable data sources and reactive derivations there's a version of control so because data is no longer pull through your system but push through your system it's actually a room time behavior is different so if you have now to observe all attributes and the computer to format 
+
+```javascript
+person.firstName = 'John'
+// calculating!
+
+console.log(person.fullName)
+
+console.log(person.fullName)
+```
+*Push Based: Recompute when a source value changes*
+
+then what will happen if we change the first name that will trigger the computed value to be rerun needs to be derived again because the baking data changed but after that if we are printed twice it doesn't need to reevaluate because it knows that it can reuse its previous answer because there was no data changed in the meantime so actually here you have sexual sharing and the most minimal form both those log statements will Prince exactly the same array just an effect of inversion of control 
+
+## Snapshotting Observable Mutable Data
+
+```javascript
+class Todo {
+  @observable id = 0
+  @observable text = ''
+  @observable completed = false
+
+  @computed get json() {
+    return {
+      id: this.id,
+      text: this.text,
+      completed: this.completed
+    }
+  }
+}   
+```
+
+so if you apply that concept to for example a to-do class you could give it just a computed value representing the JSON structure which returns a simple plain object you're presenting it to do the nice thing is that this function will always return the same object unless something that actually changing that to-do item 
+
+```javascript
+class TodoStore {
+  @observable todos = []
+  @computed json() {
+    return this.todos.map(
+      todo => todo.json
+    )
+  }
+}    
+```
+
+and if you have then a to do store with a collection of the deuce then you can just map over the two deuce if you try to get its Jason representation and for any to do that was not changed it will just reuse the same Jason representation 
+
+snapshot1.png
+
+so what happens if i multiply property over here 
+
+snapshot2.png
+
+a new step shots I knew Jason reputation will be generated 
+
+snapshot3.png
+
+that will trigger the computed value and the boxes collection to be updated so it will run the map again 
+
+snapshot4.png
+
+but the map will reuse the old snapshots of the other to do is wrong slice should be to those anyway point is clear 
+
+snapshot5.png
+
+and so on and so on 
+
+snapshot6.png
+
+so you get structural sharing for free if you use computed values to share large your state so that's actually something very cool I think 
+
+## mobx-state-tree
+
+*Opinionated, MobX powered state container*
+
+so based on that ID I recently published an experimental package it's a so much work progress but it's based on those IDs and it's this time opinionated so it tells you how to secure your stores but as a return you get things like time traveling a structural sharing 
+
+## Core Concepts
+
+> state is a tree of models
+
+and so a score concept is that your state is a tree of models 
+
+> models are mutable, observable, rich
+
+and those models can be mutable they can be reached they can be observed ball you can have actions of computers values 
+
+> snapshot: immutable representation of the state of a model
+
+but for every model there's always a snapshot which is immutable with your presents the state of the model at that moment in time and the snapshots use social sharing 
+
+## Factories
+
+```javascript
+const myModelFactory = createFactory({
+  /* exampleModel */
+
+  // properties
+  // computed values
+  // actions
+})
+```
+
+and to create a model there's concept of factories the factory just script gets an example model and every time you invoke the factory it makes a copy of the example you gave it 
+
+```javascript
+// returns fn:
+snapshot => observable({ ...exampleModel, ...snapshot })
+```
+
+and so basically it's effectively just creates a new observer object based on a copy of the example model and mix it in any snapshot you provide to it so if you had some previous snapshots of a few states that will make sure that that state is represented in the new instance you get 
+
+```javascript
+import { createFactory } from 'mobx-state-tree'
+
+const Box = createFactory({
+    name: 'A cool box instance',
+    x: 0,
+    y: 0,
+
+    get width() {
+        return this.name.length * 15;
+    }
+})
+```
+
+so a box factory just looked like this test three attributes also we made observe ball and they compute this value 
+
+```javascript
+const box1 = Box({ name: 'Hello, Reactive2016!' })
+```
+
+and then we can create a new books by just providing a complete or partial snapshot 
+
+```javascript
+import {createFactory, mapOf, arrayOf} from 'mobx-state-tree'
+
+const Store = createFactory({
+    boxes: mapOf(Box),
+    arrows: arrayOf(Arrow),
+    selection: ''
+})
+```
+
+and for the store the same there we can use the map off and the array of bonfires so that's what makes story knows how to what the shape of this object is and how to share your light it and the selection this time is no longer a reference like it was previously it's now a string because it was a reference then you would get a graph and then it would be hard to infer how it wouldn't need to be serialized so it's open yet it but also a little bit more you have a little bit more boy played an MMO Bix and we have to see where it is worth the effort or not 
+
+06.jpg
+Representation of the state of a model at a particular moment in time
+
+so let's talk about those snapshots again 
+
+```javascript
+getSnapshot(model): snapshot
+```
+
+```javascript
+applySnapshot(model, snapshot)
+```
+
+```javascript
+onSnapshot(model, callback)
+```
+
+so basically there are three functions to work for snapshots you can pass a model to the gets natural function and then get the snapshot at the moment in time I can also apply a snapshot back to an existing model instance I will see in funnier you can also subscribe to every time any snapshot is available 
+
+## Time Travelling
+
+```javascript
+const states = [];
+let currentFrame = -1
+
+onSnapshot(store, snapshot => {
+  if (currentFrame === states.length -1) {
+    currentFrame++
+    states.push(snapshot);
+  }
+})
+
+function previousState() {
+  if (--currentFrame >= 0)
+    applySnapshot(store, states[currentFrame])
+}
+```
+
+and with this you can build very easily time traveling while having the benefits of sexual sharing and knots doing expensive computations so what's if you so say we have some store we can just listen to new step shots coming in push it on some array and then we can easily apply some shit back to the existing store if you want to play back or forward 
+
+## Snapshots & Forms
+
+```javascript
+const todoEditor({todo}) => (
+  <TodoEditForm
+    todo={clone(todo)}
+    onSubmit={
+      (modifiedTodo) => {
+        applySnapshot(todo, getSnapshot(modifiedTodo))
+      }
+    }
+  />
+)
+```
+
+you can also do many other things once you have snapshots for example as you have a form but you want to make chases enough for them to some object but you want to don't want it that it immediately becomes the truth you want that stay just localized in the edit form until you submit it so what you can then do is then you can just go to to do pass it to the form and whenever the form is submitted take the snapshot of the clone to do and apply it back to its original 
+
+```javascript
+function clone(model) {
+  return getFactory(model)(getSnapshot(model))
+}
+```
+
+an actually clone is just invoking the factory of the model by with the snapshot of the model then get a new copy the exact same instance 
+
+## Snapshots & Testing
+
+```javascript
+const todo = clone(exampleTodo)
+
+todo.markCompleted()
+
+assert.deepEqual(getSnapshot(todo), {
+  title: 'test', completed: true
+})
+```
+
+I lived as you can also make testing very easy because you can just clone some base data and folk some actions on it and then check whether the snapshots represents the correct state so if he marked as completed it should be true 
+
+## Snapshots & Jest
+
+07.gif
+
+```javascript
+expect(getSnapshot(todo)).toMatchSnapshot()
+```
+
+and it also integrates very nicely if just don't know who has used just before but it's pretty awesome it you can just say I expect the snapshot to match the record snapshot and then if you change some data it will give an error the search field and then you should either fix your implementation or you can just say this is not a crack snapshot this change is correctly storage snapshot for me and it's really awesome at work if I can recommend it dolly for staples are for a testing react components 
+
+(вырезаю демо)
+<cut>
+
+but there's more we can do so you just saw this application but actually there are more of them and what was the interesting is to sink this application with the other one which turns out to be very easily once you have snapshots so what you can do is that whenever we have a new snapshot we can send it over its socket contract it at once we receive data over socket we can just apply the snapshots back to our existing store yeah it looks okay so if a now start dragging it you see on the bottom right all the snapshots of the states being synced over the web sockets and as till I kept completely in sync so that's because we have a way to sterilize our state very easily 
+
+</cut>
+
+## Snapshots & Syncing
+
+```javascript
+onSnapshot(store, (data) => {
+  socketSend(data)
+})
+
+onSocketMessage((data) => {
+  applySnapshot(store, data)
+})
+```
+
+## Patches
+
+08.jpg
+
+but that's more the nice thing about observable data and contracts the immutable data is that you know exactly what has been changed inside the data you don't get a new copy of the complete world where just the only thing you know is that this is the new world but you can actually see because it's fine grained observed ball what is actually changed so the obligatory baguettes also support Jason pictures out of the box which is a standard to synchronize changes of Jason for that it provides two functions on pets with s triggered it's time I pets is emitted and apply pets so this is very similar to snapshots exactly except that I just sink pictures and patches are of course we're not sure to synchronize because if you have a large tea tree the these objections are st. become really really large and I wouldn't do that in production so it's better instead to listen two batches so if there's a bitch now we want to send pets to the other side and if your Shiva pets we just want to apply the patch so if I now drag you see there are only very small objects send along regardless how big our state has thrown its just saying please replace in this part in the state 32 x value with this new value that's adjacent patches do so this you can use affect effectively to integrate with a backend of some sort and actually a nice thing about obex a tree because it's three it's actually fractal structure it's a it's a three consisting of three consisting of trees so what you could do is not just register a pets listener on the root of the tree he could attest best listener at any point in the tree and so that's something very funny happens so I've now attests to listeners to the tree one to the root I want to a specific books in the tree and then I start moving one of those book that book extra then I start moving netbooks then I get two pitches emitted by its listener image 1 pitch and they emit other with the correct path relatively to the position they were attached to put it in a picture if I change something here it's a Miss bitch over here with this relative path but also of there and describing relatively to that point where in the state tree it changed and see that zebra it's actually see you see it's a recursive structure ok on to actions you saw that we were just moving actions moving boxes by invoking a function so that's that doesn't look replayable at all and we said we want three playable actions to be able to have transactional state so what fix a tree do does is it's reverse responsibility of the developer so if you use the radix then you have to provide a shield Sheila's version of your action a plain object describing what should happen but my biggest a tree does it worse you just invoke a function and it gives you the description of your action because sometimes like me are lazy so a lecture mobic say tree is just like this it's plain just a function we marked a section and it can just change that instance of the box so if you move it with just read coordinates and we don't have to reproduce any world new state here we can just change this localized object and so we can then just invoke that box and move it around the fractions are two functions so we can we just listen to the fact that an action or sandbox UKISS can say please apply this action back to this object so we can replay it and that looks roughly like this actions election is very similar to the previous ones except it can be used as middleware so it receives an extinction and so here we have basically a middleware on the store the prince what action is involved so if we then move a box in the store then it prints I on this path this is this method was involved with these arguments and see your large for so what you can then do of course you should know the drill right now is it whenever there is an action and get some data and next fixed in the middle chain we can sense that description over the wire we can evoke the next layer in the middleware and if we receive images we can just apply the action to our store so if we now move the books don't know patches images but descriptions of the action so we now see that we first move the box and then we changed the selection apparently so that's just to demonstrate that actions are replayable and you can also do that for forms suppose you have a form and then environment when their collaboration happening they can just clone the object and apply the snapshot back because the meantime somebody else might also have changed the same object like if you have a Google Docs or something like that so a smarter thing to do is then cloned you object you have two minutes left how many oh I'm gonna talk quickly and then apply it back and actually you don't and the answer turns out you don't really have to have a tree as well to do all these things you can even do this roof across but I'm gonna leave death as exercise for home because I haven't heard a cool demo so so far we have a state tree with a snapshot of all and we set available actions okay yeah hola takes checks so ah it's the best of two worlds but there's one more demo last one I promise now not last one last one so is to do MPC the radix to MPC you might have seen before and so here are dirty text if tools yeah so you can change it and then you can replay it back at sea right sidra you might have seen this before this is just the basic reading stuff actually the fun thing is that this is not entirely read each application it has a red ejections and your three dicks dispatcher at us radix components you're a tech dev tools but it doesn't have a radix store and it doesn't have any reducers and cylis replayable and that's because it uses a big state tree behind the scenes now be at as a possible well turns out because we have three sections we can just mimic a ridic store with a state tree so what we just do is that we have a simple function that takes a muvek say to the base store and returns a radix store and then passes it down to the radix provider components and then I think keeps working at this and something thing is that that raid extortion is as simple as this get state is basically synonym for get the current snapshot of the state and this path is basically please replay the section on my state tree a similar subscribing to the next version of the world is basically subscribing to the next snapshot so and then our store looks more like this which is I think a lot more set for work don't get confused if this case thing that's because we want to preserve the old redox name actions and because we have that it also worked your way around so I here have my read except tools again but now with our original demo and she that's even in this entire more big space application it doesn't have any rejection it's great except tools still work because it's just really it's just a subset of this mechanism so just try it out I hope just interesting to see this happening but what's even more important to remember than justice Pegasus that you saw that a transactional state is just one reactive transformation away reactive transformations are actually very powerful concepts it's like if you have normal function applications which are very aesthetic which he needs to enter manually and then you have like the entered the era of movies and things are actually reacting so sorry i can't course lady for spec it's a thanks for your attention
+
