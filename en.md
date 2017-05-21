@@ -28,7 +28,7 @@ ReactDOM.render(<App person={person} />, document.body)
 person.name = '@mweststrate' 
 ```
 
-so that's basically what my ex does you can work data as this data is observable it's can be derived into something else please check it for me and you can mark a component as observer which basically means whenever there's relevant data being chased please read and write in the Dom and that's basically it if you run this code and a fiddle they will see that's the name inside your dome will update whenever you change the name and it won't rerender 
+so that's basically what my ex does you can work data as this data is observable it's can be derived into something else please check it for me and you can mark a component as observer which basically means whenever there's relevant data being chased please read and write in the Dom and that's basically it if you run this code and a fiddle they will see that's the name inside your dome will update whenever you change the name and it won't rerender if you change the age of the person
 
 The view is function of the state:
 
@@ -36,7 +36,7 @@ The view is function of the state:
 view = f(state)
 ```
 
-if you change the age of the person and probably you have heard this equation about reacts your view is a function of your state and actually I don't really agree with that equation and reason for that is simple if it's just a function then you'll still have responsibility of calling it function a function in itself is useless as long as it isn't cold 
+probably you have heard this equation about reacts your view is a function of your state and actually I don't really agree with that equation and reason for that is simple if it's just a function then you'll still have responsibility of calling it function a function in itself is useless as long as it isn't cold 
 
 The view is a live transformation of the state:
 
